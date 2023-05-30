@@ -25,7 +25,7 @@ export class CustomersController {
   }
 
   @Post()
-  @ApiOperation({ summary: 'Создание животного' }) // Операция для Swagger
+  @ApiOperation({ summary: 'Добавление нового заказчика' }) // Операция для Swagger
   create(@Body() createCustomer: Customer) {
     return this.customersService.create(createCustomer);
   }

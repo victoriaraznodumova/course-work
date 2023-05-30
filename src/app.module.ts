@@ -2,10 +2,16 @@ import { Module } from '@nestjs/common';
 import { CustomersModule } from './customers/customers.module';
 import { DatasourceModule } from './datasource/datasource.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OrdersModule } from './orders/orders.module';
+import { CategoriesModule } from './categories/categories.module';
+import { FeedbacksModule } from './feedbacks/feedbacks.module';
 
 @Module({
   imports: [
     CustomersModule, 
+    OrdersModule,
+    CategoriesModule,
+    FeedbacksModule,
     DatasourceModule, 
     TypeOrmModule.forRoot({
       type: 'postgres', //тип подключаемой БД

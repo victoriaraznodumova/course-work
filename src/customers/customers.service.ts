@@ -25,24 +25,21 @@ export class CustomersService {
       return customer;
     }
 
-    findOne(customer_id: number): Promise<Customer> {
+    findOne(id: number): Promise<Customer> {
       return this.customerRepository.findOne({
-        where: { customer_id }, 
-        relations: { }, 
+        where: { id }, 
       });
     }
 
     async findAll(): Promise<Customer[]> {
       const customers = await this.customerRepository.find({
-        relations: {
-        },
       }); 
       return customers;
     }
     
-    async update(customer_id: number, updatedCustomer: Customer) {
+    async update(id: number, updatedCustomer: Customer) {
       //получаем объект Animal для обновления по id
-      const customer = await this.customerRepository.findOne({ where: { customer_id } }); //получаем объект Animal по id из БД
+      const customer = await this.customerRepository.findOne({ where: { id } }); //получаем объект Animal по id из БД
       customer.name = updatedCustomer.name;
       customer.surname = updatedCustomer.surname;
       customer.age = updatedCustomer.age;
@@ -52,8 +49,7 @@ export class CustomersService {
       return customer; //возвращаем объект Animal
     }
 
-    remove(customer_id: number) {
-      this.customerRepository.delete({ customer_id }); //удаляем объект Animal из БД
-    }
-  
+    remove(id: number) {
+      this.customerRepository.delete({ id }); //удаляем объект Animal из БД
+    } 
 }
