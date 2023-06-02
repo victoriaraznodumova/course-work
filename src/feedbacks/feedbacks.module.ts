@@ -5,14 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Customer } from 'src/customers/customer.entity';
 import { Feedback } from 'src/feedbacks/feedback.entity';
 import { Order } from 'src/orders/order.entity';
+import { FeedbacksDatasourceModule } from 'src/datasource/feedbacksdatasource.module';
 
 
 
 @Module({
     controllers: [FeedbacksController],
     providers: [FeedbacksService],
-    imports: [
-      TypeOrmModule.forFeature([Customer, Feedback, Order]), // !!! В модуле автор мы используем все три сущности, поэтому все три сущности необходимо импортирвоать!
+    imports: [FeedbacksDatasourceModule,
+      TypeOrmModule.forFeature([ Feedback, Order]), // !!! В модуле автор мы используем все три сущности, поэтому все три сущности необходимо импортирвоать!
     ],
   })
   export class FeedbacksModule {}

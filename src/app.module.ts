@@ -5,13 +5,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { OrdersModule } from './orders/orders.module';
 import { CategoriesModule } from './categories/categories.module';
 import { FeedbacksModule } from './feedbacks/feedbacks.module';
+import { OrdersDatasourceModule } from './datasource/ordersdatasource.module';
+import { FeedbacksDatasourceModule } from './datasource/feedbacksdatasource.module';
 
 @Module({
   imports: [
     CustomersModule, 
     OrdersModule,
+    OrdersDatasourceModule,
     CategoriesModule,
     FeedbacksModule,
+    FeedbacksDatasourceModule,
     DatasourceModule, 
     TypeOrmModule.forRoot({
       type: 'postgres', //тип подключаемой БД

@@ -10,16 +10,19 @@ export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
   @Get()
+  @ApiOperation({ summary: 'Получение данных обо всех заказчиках' })
   findAll() {
     return this.customersService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Получение данных о заказчике по его id' })
   findOne(@Param('id') id: string) {
     return this.customersService.findOne(+id);
   }
 
   @Put(':id')
+  @ApiOperation({ summary: 'Обновление данных о заказчике по его id' })
   update(@Param('id') id: string, @Body() updateCustomer: Customer) {
     return this.customersService.update(+id, updateCustomer);
   }
@@ -31,8 +34,8 @@ export class CustomersController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Удаление заказчика по его id' })
   remove(@Param('id') id: string) {
     return this.customersService.remove(+id);
   }
-
 }
