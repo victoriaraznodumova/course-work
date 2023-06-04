@@ -17,30 +17,31 @@ export class Customer {
   id: number;
 
 
-  @ApiProperty({example: '"Иван"', description: 'Имя заказчика'})
+  @ApiProperty({example: '"Иван"', description: 'Имя пользователя'})
   @Column({name: 'name', type: 'text'}) //колонка таблицы, сюда можно добавить большое количество параметров для БД, например тип, уникальность, триггер и т.д.
   name: string;
  
 
-  @ApiProperty({example: '"Иванов"', description: 'Фамилия заказчика'})
+  @ApiProperty({example: '"Иванов"', description: 'Фамилия пользователя'})
   @Column({name: 'surname', type: 'text'})
   surname: string;
 
 
-  @ApiProperty({example: '24', description: 'Возраст заказчика'})
+  @ApiProperty({example: '24', description: 'Возраст пользователя'})
   @Column({name: 'age', type: 'text'})
   age: number;
 
 
-  @ApiProperty({example: '"89998887766"', description: 'Номер телефона заказчика'})
-  @Column({name: 'phone_number', type: 'text'})
-  phone_number: string;
+  @ApiProperty({example: '"abc@gmail.com"', description: 'Электронная пользователя'})
+  @Column({name: 'email', type: 'text'})
+  email: string;
 
 
-  @ApiProperty({example: '"Хотим семейную фотосессию на природе"', description: 'Комментарий заказчика к желаемой фотосессии'})
-  @Column({name: 'comment', type: 'text'})
-  comment: string;
-  nullable: true;
+  @ApiProperty({example: '"123456"', description: 'Пароль пользователя'})
+  @Column({name: 'password', type: 'text'})
+  password: string;
+
+
 
   
   @OneToMany((type) => Customer, (customer) => customer.id)

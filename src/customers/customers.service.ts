@@ -19,8 +19,9 @@ export class CustomersService {
       customer.name = customerDto.name;
       customer.surname = customerDto.surname;
       customer.age = customerDto.age;
-      customer.phone_number = customerDto.phone_number;
-      customer.comment = customerDto.comment;
+      customer.email = customerDto.email;
+      customer.password = "fdf";
+
       await this.customerRepository.save(customer);
       return customer;
     }
@@ -43,8 +44,9 @@ export class CustomersService {
       customer.name = updatedCustomer.name;
       customer.surname = updatedCustomer.surname;
       customer.age = updatedCustomer.age;
-      customer.phone_number = updatedCustomer.phone_number;
-      customer.comment = updatedCustomer.comment;
+      customer.email = updatedCustomer.email;
+      customer.password = "fdf";
+      //customer.comment = updatedCustomer.comment;
       await this.customerRepository.save(customer); //сохраняем объект Animal в БД
       return customer; //возвращаем объект Animal
     }

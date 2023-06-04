@@ -13,7 +13,7 @@ import {
 export class Category {
   
   @ApiProperty({example: '1', description: 'Номер категории'})
-  @PrimaryGeneratedColumn() //колонка - идентификатор, значение генерируется автоматически
+  @PrimaryGeneratedColumn({name: 'category_id'}) //колонка - идентификатор, значение генерируется автоматически
   category_id: number;
 
 
@@ -27,14 +27,15 @@ export class Category {
   price: number;
 
 
-  // @OneToMany(() => Order, (order) => order.category)
-  //   // @JoinTable({
-  //   //   //join таблица 
-  //   //   name: 'order_category',
-  //   //   joinColumn: { name: 'category_id' }, 
-  //   //   inverseJoinColumn: {name: 'order_id'}
-  //   // })
+  @OneToMany(() => Order, (order) => order.category)
+  orders: Order[]
+
+     // @JoinTable({
+    //   //join таблица 
+    //   name: 'order_category',
+    //   joinColumn: { name: 'category_id' }, 
+    //   inverseJoinColumn: {name: 'order_id'}
+    // })
 
   //   @JoinTable()
-  //   orders: Order[]
 }

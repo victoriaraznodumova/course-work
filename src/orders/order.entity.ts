@@ -26,20 +26,29 @@ export class Order {
   order_date: Date; 
   
 
-  @ApiProperty({example: '1', description: 'Номер категории фотосессии'})
-  @Column()
-  category_id: number;
+  // @ApiProperty({example: '1', description: 'Номер категории фотосессии'})
+  // @Column({name: 'category', type: 'int'})
+  // category: number;
+
+  @ApiProperty({example: '"Хотим семейную фотосессию на природе"', description: 'Комментарий заказчика к желаемой фотосессии'})
+  @Column({name: 'comment', type: 'text'})
+  comment: string;
+  nullable: true;
 
   
 //  @ManyToOne((type) => Category, (category) => category.orders)
-//   @JoinColumn(name = "order_date",
-//     //join таблица 
-//     referencedColumnName = "name")
-//   // @JoinTable()
-//   // category: Category;
+//  category_id: Category;
+  @ApiProperty({ example: '1', description: 'Id' })
+  @Column({ name: 'category_id', type: 'integer' })
+  category_id: number;
 
 
   @ApiProperty({example: 'false', description: 'Статус заказа'})
   @Column()
   is_done: boolean; 
+
+  @ManyToOne(() => Category, (category) => category.orders)
+  // eslint-disable-next-line prettier/prettier
+  @JoinColumn({ name: "category_id", referencedColumnName: "category_id" })
+  category: Category;
 }
