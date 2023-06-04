@@ -6,13 +6,7 @@ export class CreateCustomerDto {
     @IsNotEmpty({message: 'Заполните поле name'})
     @IsString({message: "Имя пользователя должно быть строкой"})
     @ApiProperty({example: '"Иван"', description: 'Введите имя пользователя'})
-    name: string;
-
-
-    @IsNotEmpty({message: 'Заполните поле surname'})
-    @IsString({message: "Фамилия пользователя должна быть строкой"})
-    @ApiProperty({example: '"Иванов"', description: 'Фамилия пользователя'})
-    surname: string;
+    fullname: string;
 
 
     @IsNotEmpty({message: 'Заполните поле age'})

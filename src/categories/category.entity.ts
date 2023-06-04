@@ -17,7 +17,7 @@ export class Category {
   category_id: number;
 
 
-  @ApiProperty({example: '"Семейная фотосессия"', description: 'Название категории'})
+  @ApiProperty({example: 'Семейная фотосессия', description: 'Название категории'})
   @Column({}) //колонка таблицы, сюда можно добавить большое количество параметров для БД, например тип, уникальность, триггер и т.д.
   name: string;
 
@@ -27,15 +27,6 @@ export class Category {
   price: number;
 
 
-  @OneToMany(() => Order, (order) => order.category_id)
+  @OneToMany(() => Order, (order) => order.category)
   orders: Order[]
-
-     // @JoinTable({
-    //   //join таблица 
-    //   name: 'order_category',
-    //   joinColumn: { name: 'category_id' }, 
-    //   inverseJoinColumn: {name: 'order_id'}
-    // })
-
-  //   @JoinTable()
 }

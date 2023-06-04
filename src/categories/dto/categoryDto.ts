@@ -5,7 +5,7 @@ export class CreateCategoryDto {
 
   @IsNotEmpty({message: 'Заполните поле name'})
   @IsString({message: "Название категории должно быть строкой"})
-  @ApiProperty({example: '"Семейная фотосессия"', description: 'Введите название категории'})
+  @ApiProperty({example: "Семейная фотосессия", description: 'Введите название категории'})
   name: string;
 
 

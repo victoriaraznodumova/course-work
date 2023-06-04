@@ -16,8 +16,7 @@ export class CustomersService {
     // Promise<Animal> - указывает, что функция возвращает объект Animal в виде Promise (c асинхронного потока)
     async create(customerDto: CreateCustomerDto): Promise<Customer> {
       const customer = this.customerRepository.create(); 
-      customer.name = customerDto.name;
-      customer.surname = customerDto.surname;
+      customer.fullname = customerDto.fullname;
       customer.age = customerDto.age;
       customer.email = customerDto.email;
       customer.password = "fdf";
@@ -41,8 +40,7 @@ export class CustomersService {
     async update(id: number, updatedCustomer: Customer) {
       //получаем объект Animal для обновления по id
       const customer = await this.customerRepository.findOne({ where: { id } }); //получаем объект Animal по id из БД
-      customer.name = updatedCustomer.name;
-      customer.surname = updatedCustomer.surname;
+      customer.fullname = updatedCustomer.fullname;
       customer.age = updatedCustomer.age;
       customer.email = updatedCustomer.email;
       customer.password = "fdf";

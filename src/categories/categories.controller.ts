@@ -36,7 +36,7 @@ export class CategoriesController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'УДаление категории заказа по её id' })
+  @ApiOperation({ summary: 'Удаление категории заказа по её id' })
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(+id);
   }

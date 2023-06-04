@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Order } from 'src/orders/order.entity';
 import {
   Column,
   Entity,
@@ -17,15 +18,10 @@ export class Customer {
   id: number;
 
 
-  @ApiProperty({example: '"Иван"', description: 'Имя пользователя'})
-  @Column({name: 'name', type: 'text'}) //колонка таблицы, сюда можно добавить большое количество параметров для БД, например тип, уникальность, триггер и т.д.
-  name: string;
+  @ApiProperty({example: '"Иван Иванов"', description: 'Полное имя пользователя'})
+  @Column({name: 'fullname', type: 'text'}) //колонка таблицы, сюда можно добавить большое количество параметров для БД, например тип, уникальность, триггер и т.д.
+  fullname: string;
  
-
-  @ApiProperty({example: '"Иванов"', description: 'Фамилия пользователя'})
-  @Column({name: 'surname', type: 'text'})
-  surname: string;
-
 
   @ApiProperty({example: '24', description: 'Возраст пользователя'})
   @Column({name: 'age', type: 'text'})
@@ -42,21 +38,23 @@ export class Customer {
   password: string;
 
 
+  @OneToMany(() => Order, (order) => order.category)
+  orders: Order[]
 
   
-  @OneToMany((type) => Customer, (customer) => customer.id)
-  @JoinTable({
-    name: "question_categories", // table name for the junction table of this relation
-    joinColumn: {
-        name: "question",
-        referencedColumnName: "id"
-    },
-    inverseJoinColumn: {
-        name: "category",
-        referencedColumnName: "id"
-    }
-})
-customers: Customer[]; 
+//   @OneToMany((type) => Customer, (customer) => customer.id)
+//   @JoinTable({
+//     name: "question_categories", // table name for the junction table of this relation
+//     joinColumn: {
+//         name: "question",
+//         referencedColumnName: "id"
+//     },
+//     inverseJoinColumn: {
+//         name: "category",
+//         referencedColumnName: "id"
+//     }
+// })
+// customers: Customer[]; 
 }
 
 // @OneToMany((type) => Customer, (customer) => customer.id)

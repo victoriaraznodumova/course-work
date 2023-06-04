@@ -12,8 +12,6 @@ export class CategoriesService {
   constructor(
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>, // "внедряем" репозиторий Customer в сервис
-  //   @InjectRepository(Order)
-  //   private readonly orderRepository: Repository<Order>, // "внедряем" репозиторий Artilcle в сервис
    ) {}
 
 
@@ -23,13 +21,7 @@ export class CategoriesService {
      category.name = categoryDto.name; //заполняем поля объекта Customer
      category.price = categoryDto.price;
      await this.categoryRepository.save(category); //сохраняем объект Customer в БД
-     return category; 
-
-    // const category = await this.categoryRepository.save({
-    //   name: categoryDto.name,
-    //   price: categoryDto.price,
-    // }); //создаем объект Customer из репозитория
-    // return { category } 
+     return category;  
    }
  
 
@@ -41,11 +33,9 @@ export class CategoriesService {
     });
   }
 
-
     
     async findAll(): Promise<Category[]> {
       const categories = await this.categoryRepository.find({
-        // relations: { orders: true },
         //получаем связанные объекты
       }); //получаем массив Customer из БД
       return categories; //возвращаем массив Customer

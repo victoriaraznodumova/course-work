@@ -14,7 +14,7 @@ import { Category } from 'src/categories/category.entity';
     controllers: [OrdersController],
     providers: [OrdersService],
     imports: [OrdersDatasourceModule,
-      TypeOrmModule.forFeature([Feedback, Order, Category]), // !!! В модуле автор мы используем все три сущности, поэтому все три сущности необходимо импортирвоать!
+      TypeOrmModule.forFeature([Feedback, Order, Category, Customer]), // !!! В модуле автор мы используем все три сущности, поэтому все три сущности необходимо импортирвоать!
     ],
   })
   export class OrdersModule {}
