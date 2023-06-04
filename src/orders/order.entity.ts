@@ -38,9 +38,9 @@ export class Order {
   
 //  @ManyToOne((type) => Category, (category) => category.orders)
 //  category_id: Category;
-  @ApiProperty({ example: '1', description: 'Id' })
-  @Column({ name: 'category_id', type: 'integer' })
-  category_id: number;
+  // @ApiProperty({ example: '1', description: 'Id' })
+  // @Column({ name: 'category_id', type: 'integer' })
+  // category_id: number;
 
 
   @ApiProperty({example: 'false', description: 'Статус заказа'})
@@ -50,5 +50,5 @@ export class Order {
   @ManyToOne(() => Category, (category) => category.orders)
   // eslint-disable-next-line prettier/prettier
   @JoinColumn({ name: "category_id", referencedColumnName: "category_id" })
-  category: Category;
+  category_id: Category;
 }

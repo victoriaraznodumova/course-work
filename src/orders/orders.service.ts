@@ -20,13 +20,13 @@ export class OrdersService {
     const order = this.orderRepository.create(); //создаем объект Customer из репозитория
     order.order_date = new Date(orderDto.order_date)
     order.is_done = null;
-    order.category_id = orderDto.category;
-    // order.category_id = await this.categoryRepository.findOneBy({
-    //   category_id: orderDto.category
+    // order.category_id = orderDto.category;
+    order.category_id = await this.categoryRepository.findOneBy({
+       category_id: orderDto.category
     
     // const category = await this.categoryRepository.findOne({
     //   where: { category_id: orderDto.category },
-    // });
+   });
   //   order.category_id = 6;
     order.comment = orderDto.comment;
 
@@ -42,7 +42,7 @@ export class OrdersService {
     return this.orderRepository.findOne({
       //получаем объект Customer по id
       where: { id }, 
-      relations: {category: true},//указываем условие поиска по id
+      relations: {category_id: true},//указываем условие поиска по id
     });
   }
 
@@ -50,7 +50,7 @@ export class OrdersService {
     
     async findAll(): Promise<Order[]> {
       const orders = await this.orderRepository.find({
-        relations: {category: true},
+        relations: {category_id: true},
         //получаем связанные объекты
       }); //получаем массив Customer из БД
       return orders; //возвращаем массив Customer

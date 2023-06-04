@@ -27,7 +27,7 @@ export class Category {
   price: number;
 
 
-  @OneToMany(() => Order, (order) => order.category)
+  @OneToMany(() => Order, (order) => order.category_id)
   orders: Order[]
 
      // @JoinTable({
