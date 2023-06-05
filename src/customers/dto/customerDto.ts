@@ -5,7 +5,7 @@ export class CreateCustomerDto {
 
     @IsNotEmpty({message: 'Заполните поле name'})
     @IsString({message: "Имя пользователя должно быть строкой"})
-    @ApiProperty({example: 'Иван', description: 'Введите имя пользователя'})
+    @ApiProperty({example: 'Иван Иванов', description: 'Введите имя пользователя'})
     fullname: string;
 
 
@@ -19,10 +19,4 @@ export class CreateCustomerDto {
     @IsEmail()
     @ApiProperty({example: 'abc@gmail.com', description: 'Введите электронную почту пользователя'})
     email: string;
-
-
-    @IsNotEmpty({message: 'Заполните поле password'})
-    @MinLength(6, {message: "Пароль должен содержать не менее 6 символов"})
-    @ApiProperty({example: '123456', description: 'Введите пароль'})
-    password: string;
   }

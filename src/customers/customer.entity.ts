@@ -14,12 +14,12 @@ import {
 @Entity('customers') //указываем что это не просто клаcс, а сущность в рамках TypeOrm, в БД будет храниться как таблица
 export class Customer {
 
-  @ApiProperty({ description: 'Номер заказчика'})
+  // @ApiProperty({ description: 'Номер заказчика'})
   @PrimaryGeneratedColumn() //колонка - идентификатор, значение генерируется автоматически
   id: number;
 
 
-  @ApiProperty({example: '"Иван Иванов"', description: 'Полное имя пользователя'})
+  @ApiProperty({example: 'Иван Иванов', description: 'Полное имя пользователя'})
   @Column({name: 'fullname', type: 'text'}) //колонка таблицы, сюда можно добавить большое количество параметров для БД, например тип, уникальность, триггер и т.д.
   fullname: string;
  
@@ -29,14 +29,9 @@ export class Customer {
   age: number;
 
 
-  @ApiProperty({example: '"abc@gmail.com"', description: 'Электронная пользователя'})
+  @ApiProperty({example: 'abc@gmail.com', description: 'Электронная почта пользователя'})
   @Column({name: 'email', type: 'text'})
   email: string;
-
-
-  @ApiProperty({example: '"123456"', description: 'Пароль пользователя'})
-  @Column({name: 'password', type: 'text'})
-  password: string;
 
 
   @OneToMany(() => Order, (order) => order.customer)

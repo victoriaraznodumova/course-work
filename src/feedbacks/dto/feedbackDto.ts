@@ -9,7 +9,7 @@ export class CreateFeedbackDto
     feedback_text: string;
 
 
-    // @IsInt({message: "Комментарий заказчика должен быть строкой"})
+    @IsString({message: "Комментарий заказчика должен быть строкой"})
     @ApiProperty({example: '"Хотим семейную фотосессию на природе"', description: 'Добавьте комментарий к заказу'})
     customer: string;
 }

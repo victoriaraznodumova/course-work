@@ -38,11 +38,13 @@ export class Order {
   is_done: boolean; 
 
 
+  
   @ManyToOne(() => Category, (category) => category.orders)
   @JoinColumn({ name: "category", referencedColumnName: "category_id" })
   category: Category;
 
 
+  
   @ManyToOne(() => Customer, (customer) => customer.orders)
   @JoinColumn({ name: "customer", referencedColumnName: "fullname" })
   customer: Customer;
