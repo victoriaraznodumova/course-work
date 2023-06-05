@@ -17,35 +17,34 @@ import {
 @Entity('orders')
 export class Order {
   
-  @ApiProperty({example: '1', description: 'Номер заказа'})
+  // @ApiProperty({example: '1', description: 'Номер заказа'})
   @PrimaryGeneratedColumn()
   id: number;
 
 
-  @ApiProperty({example: '"2023-05-11"', description: 'Желаемая дата фотосессии'})
+  @ApiProperty({example: '2023-05-11', description: 'Желаемая дата фотосессии'})
   @Column()
   order_date: Date; 
   
 
-  @ApiProperty({example: '"Хотим семейную фотосессию на природе"', description: 'Комментарий заказчика к желаемой фотосессии'})
+  @ApiProperty({example: 'false', description: 'Статус заказа'})
+  @Column()
+  is_done: boolean;
+
+
+  @ApiProperty({example: 'Хотим семейную фотосессию на природе', description: 'Комментарий заказчика к желаемой фотосессии'})
   @Column({name: 'comment', type: 'text'})
   comment: string;
   nullable: true;
 
-  
-  @ApiProperty({example: 'false', description: 'Статус заказа'})
-  @Column()
-  is_done: boolean; 
 
-
-  
-  @ManyToOne(() => Category, (category) => category.orders)
-  @JoinColumn({ name: "category", referencedColumnName: "category_id" })
-  category: Category;
-
-
-  
   @ManyToOne(() => Customer, (customer) => customer.orders)
   @JoinColumn({ name: "customer", referencedColumnName: "fullname" })
   customer: Customer;
+
+  
+  @ApiProperty({example: '1', description: 'Номер категории'})
+  @ManyToOne(() => Category, (category) => category.orders)
+  @JoinColumn({ name: "category", referencedColumnName: "category_id" })
+  category: Category;
 }

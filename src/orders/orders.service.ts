@@ -22,19 +22,18 @@ export class OrdersService {
   async create(orderDto: CreateOrderDto): Promise<Order>
   {
     const order = this.orderRepository.create(); //создаем объект Customer из репозитория
-    order.order_date = new Date(orderDto.order_date)
+    order.order_date = new Date(orderDto.order_date);
+    order.is_done = false;
     order.comment = orderDto.comment;
-    order.is_done = null;
-    order.category = await this.categoryRepository.findOneBy({
-      category_id: orderDto.category
-    });
     order.customer = await this.customerRepository.findOneBy({
       fullname: orderDto.customer
     });
-;
+    order.category = await this.categoryRepository.findOneBy({
+      category_id: orderDto.category
+    });
     await this.orderRepository.save(order); //сохраняем объект Customer в БД
     return order; //возвращаем объект Customer
-   }
+  }
   
  
    
@@ -44,7 +43,7 @@ export class OrdersService {
     return this.orderRepository.findOne({
       //получаем объект Customer по id
       where: { id }, 
-      relations: {category: true},//указываем условие поиска по id
+      relations: {customer: true, category: true },//указываем условие поиска по id
     });
   }
 
@@ -52,7 +51,7 @@ export class OrdersService {
     
     async findAll(): Promise<Order[]> {
       const orders = await this.orderRepository.find({
-        relations: {category: true, customer: true},
+        relations: { customer: true, category: true},
         //получаем связанные объекты
       }); //получаем массив Customer из БД
       return orders; //возвращаем массив Customer
@@ -62,10 +61,10 @@ export class OrdersService {
     async update(id: number, updatedOrder: Order) {
       //получаем объект Customer для обновления по id
       const order = await this.orderRepository.findOne({ where: { id } }); //получаем объект Customer по id из БД
-      // order.customer_id = updatedOrder.customer_id; //обновляем поля объекта Customer
-      // order.category_id = updatedOrder.category_id;
       order.order_date = updatedOrder.order_date;
       order.comment = updatedOrder.comment;
+      order.customer = updatedOrder.customer; //обновляем поля объекта Customer
+      order.category = updatedOrder.category;
       
       await this.orderRepository.save(order); //сохраняем объект Customer в БД
       return order; //возвращаем объект Customer
