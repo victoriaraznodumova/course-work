@@ -42,10 +42,8 @@ export class Order {
   @JoinColumn({ name: "category", referencedColumnName: "category_id" })
   category: Category;
 
+
   @ManyToOne(() => Customer, (customer) => customer.orders)
   @JoinColumn({ name: "customer", referencedColumnName: "fullname" })
   customer: Customer;
-  // order: Customer;
-
-
 }

@@ -20,7 +20,6 @@ export class CustomersService {
       customer.age = customerDto.age;
       customer.email = customerDto.email;
       customer.password = "fdf";
-
       await this.customerRepository.save(customer);
       return customer;
     }
@@ -28,11 +27,13 @@ export class CustomersService {
     findOne(id: number): Promise<Customer> {
       return this.customerRepository.findOne({
         where: { id }, 
+        relations: {orders: true, feedbacks: true},
       });
     }
 
     async findAll(): Promise<Customer[]> {
       const customers = await this.customerRepository.find({
+        relations: { orders: true, feedbacks: true},
       }); 
       return customers;
     }
@@ -44,7 +45,6 @@ export class CustomersService {
       customer.age = updatedCustomer.age;
       customer.email = updatedCustomer.email;
       customer.password = "fdf";
-      //customer.comment = updatedCustomer.comment;
       await this.customerRepository.save(customer); //сохраняем объект Animal в БД
       return customer; //возвращаем объект Animal
     }

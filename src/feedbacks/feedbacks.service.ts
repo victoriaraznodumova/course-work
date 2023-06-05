@@ -3,12 +3,16 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Feedback } from "./Feedback.entity";
 import { CreateFeedbackDto } from "./dto/feedbackDto";
+import { Customer } from "src/customers/customer.entity";
 
 @Injectable()
 export class FeedbacksService {
   constructor(
     @InjectRepository(Feedback)
     private readonly feedbackRepository: Repository<Feedback>,  
+    @InjectRepository(Customer)
+    private readonly customerRepository: Repository<Customer>, // "внедряем" репозиторий Artilcle в сервис
+
   ) {}
  
 
@@ -16,7 +20,10 @@ export class FeedbacksService {
   {
       const feedback = this.feedbackRepository.create(); 
       feedback.feedback_date = new Date(); 
-      feedback.feedback_text = feedbackDto.feedback_text;  
+      feedback.feedback_text = feedbackDto.feedback_text;
+      feedback.customer = await this.customerRepository.findOneBy({
+        fullname: feedbackDto.customer 
+      })
       await this.feedbackRepository.save(feedback); //сохраняем объект Sale в БД
       return feedback; //возвращаем объект Sale
   }
@@ -26,13 +33,16 @@ export class FeedbacksService {
   // Promise<Sale> - указывает, что функция возвращает объект Sale в виде Promise (c асинхронного потока)
    return this.feedbackRepository.findOne({
      //получаем объект Sale по id
-     where: { id }, //указываем условие поиска по id
+     where: { id },
+      //указываем условие поиска по id
+      relations: {customer: true},
    });
  }
   
 
   async findAll(): Promise<Feedback[]> {
     const feedbacks = await this.feedbackRepository.find({
+      relations: {customer: true},
     });
     return feedbacks; //возвращаем массив Sale
   }

@@ -7,4 +7,9 @@ export class CreateFeedbackDto
     @IsString({message: "Текст отзыва должен быть строкой"})
     @ApiProperty({example: '"Очень понравились готовые фотографии"', description: 'Введите текст отзыва'})
     feedback_text: string;
+
+
+    // @IsInt({message: "Комментарий заказчика должен быть строкой"})
+    @ApiProperty({example: '"Хотим семейную фотосессию на природе"', description: 'Добавьте комментарий к заказу'})
+    customer: string;
 }

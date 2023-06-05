@@ -13,7 +13,7 @@ import { FeedbacksDatasourceModule } from 'src/datasource/feedbacksdatasource.mo
     controllers: [FeedbacksController],
     providers: [FeedbacksService],
     imports: [FeedbacksDatasourceModule,
-      TypeOrmModule.forFeature([ Feedback, Order]), // !!! В модуле автор мы используем все три сущности, поэтому все три сущности необходимо импортирвоать!
+      TypeOrmModule.forFeature([ Feedback, Order, Customer]), // !!! В модуле автор мы используем все три сущности, поэтому все три сущности необходимо импортирвоать!
     ],
   })
   export class FeedbacksModule {}
