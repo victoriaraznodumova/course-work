@@ -36,8 +36,6 @@ export class OrdersService {
   }
   
  
-   
-
    findOne(id: number): Promise<Order> {
     // Promise<Customer> - указывает, что функция возвращает объект Customer в виде Promise (c асинхронного потока)
     return this.orderRepository.findOne({
