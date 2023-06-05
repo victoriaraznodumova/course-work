@@ -12,7 +12,7 @@ import {
 @Entity('categories') //указываем что это не просто клаcс, а сущность в рамках TypeOrm, в БД будет храниться как таблица
 export class Category {
   
-  @ApiProperty({example: '1', description: 'Номер категории'})
+  // @ApiProperty({example: '1', description: 'Номер категории'})
   @PrimaryGeneratedColumn({name: 'category_id'}) //колонка - идентификатор, значение генерируется автоматически
   category_id: number;
 
